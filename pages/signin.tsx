@@ -9,6 +9,7 @@ import LoadingDots from 'components/ui/LoadingDots';
 import Logo from 'components/icons/Logo';
 import { useUser } from 'utils/useUser';
 import { Provider } from '@supabase/supabase-js';
+import Slack from '@/components/icons/Slack';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ const SignIn = () => {
     setLoading(true);
     setMessage({});
 
-    const { error } = await signIn({ email, password });
+    const { error } = await signIn({ email, password }, {redirectTo: process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL});
     if (error) {
       setMessage({ type: 'error', content: error.message });
     }
@@ -43,7 +44,7 @@ const SignIn = () => {
 
   const handleOAuthSignIn = async (provider: Provider) => {
     setLoading(true);
-    const { error } = await signIn({ provider });
+    const { error } = await signIn({ provider }, {redirectTo: process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL});
     if (error) {
       setMessage({ type: 'error', content: error.message });
     }
@@ -169,10 +170,10 @@ const SignIn = () => {
             variant="slim"
             type="submit"
             disabled={loading}
-            onClick={() => handleOAuthSignIn('github')}
+            onClick={() => handleOAuthSignIn('slack')}
           >
-            <GitHub />
-            <span className="ml-2">Continue with GitHub</span>
+            <div className="w-8 mx-2"><Slack /></div>
+            <span className="ml-2">Continue with Slack</span>
           </Button>
         </div>
       </div>

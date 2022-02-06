@@ -11,7 +11,8 @@ type UserContextType = {
   userLoaded: boolean;
   subscription: Subscription;
   signIn: (
-    options: SignInOptions
+    options: SignInOptions,
+    options2: SignInOptions2,
   ) => Promise<{
     session: Session | null;
     user: User | null;
@@ -93,7 +94,7 @@ export const UserContextProvider = (props: any) => {
     userDetails,
     userLoaded,
     subscription,
-    signIn: (options: SignInOptions) => supabase.auth.signIn(options),
+    signIn: (options: SignInOptions, options2: SignInOptions2) => supabase.auth.signIn(options, options2),
     signUp: (options: SignUpOptions) => supabase.auth.signUp(options),
     signOut: () => {
       setUserDetails(null);
@@ -118,6 +119,10 @@ type SignInOptions = {
   password?: string;
   provider?: Provider;
 };
+
+type SignInOptions2 = {
+  redirectTo?: string;
+}
 
 type SignUpOptions = {
   email: string;

@@ -70,12 +70,12 @@ export default function Account() {
             Account
           </h1>
           <p className="mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl max-w-2xl m-auto">
-            We partnered with Stripe for a simplified billing.
+            Connect to Slack
           </p>
         </div>
       </div>
       <div className="p-4">
-        <Card
+        {/* <Card
           title="Your Plan"
           description={
             subscriptionName &&
@@ -110,11 +110,11 @@ export default function Account() {
               </Link>
             )}
           </div>
-        </Card>
+        </Card> */}
         <Card
           title="Your Name"
-          description="Please enter your full name, or a display name you are comfortable with."
-          footer={<p>Please use 64 characters at maximum.</p>}
+          // description="Please enter your full name, or a display name you are comfortable with."
+          // footer={<p>Please use 64 characters at maximum.</p>}
         >
           <div className="text-xl mt-8 mb-4 font-semibold">
             {userDetails ? (
